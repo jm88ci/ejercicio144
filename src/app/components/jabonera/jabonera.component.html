@@ -1,0 +1,38 @@
+<div>
+    <div id="botonera" class="btn-group-vertical float-start">
+      <button class="btn btn-outline-primary" (click)="power()" [class.btn-success]="encendido" [class.btn-danger]="!encendido">
+        <i class="bi bi-power"></i>
+      </button>
+      <button class="btn btn-outline-primary" (click)="cargarBateria()">Cargar baterías</button>
+      <button class="btn btn-outline-primary" (click)="rellenarJabon()">Rellenar jabón</button>
+    </div>
+  
+    <div class="float-start">
+      <img class="jabonera img-fluid" alt="" [src]="encendido ? imagenOn : imagenOff" (click)="dispensar()"/>
+      <div id="datos">
+        <p class="h4 text-center">{{ nombre }}</p>
+  
+        <label for="bateria" class="form-label">
+          <i [class]="
+          {
+            'bi-battery-full': bateria >=50 && bateria <=100,
+            'bi-battery-half': bateria >=15 && bateria < 50,
+            'bi-battery': bateria >= 0 && bateria < 15,
+          }"></i> 
+          <span>{{ bateria }}%</span>
+        </label>
+        <div class="progress" id="bateria">
+          <div class="progress-bar bg-success" [style.width.%]="bateria" ></div>
+        </div>
+        <hr/>
+        <label for="deposito" class="form-label">
+          <i class="bi bi-moisture"></i> 
+          <span>{{ nivelActual }} ml / {{ nivelMaximo }} ml</span>
+        </label>
+        <div class="progress" id="deposito">
+          <div class="progress-bar bg-info" [style.width.%]="(nivelActual / nivelMaximo) * 100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
